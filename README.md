@@ -1,11 +1,24 @@
+# Assembria — Predictive AI for Smarter Auto Assembly
 
-  # Assembria
+**Assembria** is a speculative design system and interactive prototype that explores how **AI-driven predictive maintenance** can close the gap between customer orders and on-time deliveries in automotive manufacturing.  
+It visualizes an intelligent assembly line that detects potential machine failures before they happen — transforming downtime into foresight.
 
-  This is a code bundle for Assembria. The original project is available at https://www.figma.com/design/vxrPVlNWOC5bBREvU6x7wM/Assembria.
+---
 
-  ## Running the code
+## Features
 
-  Run `npm i` to install the dependencies.
+- **Overview Dashboard**
+  Displays factory health, predictive activity, and issue distribution with a 2.5D assembly line visualization.
 
-  Run `npm run dev` to start the development server.
-  
+- **Machines Page**
+  Shows per-machine analytics: sensor trends (temperature, sound, airflow, optical), failure probability, and AI recommendations.
+
+- **Maintenance Page**
+  Manages repair scheduling, part procurement, and workforce allocation through an intelligent calendar system.
+
+- **Analytics Page**
+  Summarizes performance impact: downtime reduction, ROI, model accuracy, and sensor contribution analysis.
+
+---
+
+Built by Chloe Zhu in React + TypeScript, UI/UX design in Figma + Figma Make

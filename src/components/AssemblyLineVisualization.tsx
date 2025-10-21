@@ -45,7 +45,7 @@ export function AssemblyLineVisualization() {
                 transform: `perspective(600px) rotateX(5deg) translateY(${index % 2 === 0 ? '0' : '-10px'})`
               }}>
                 {/* Machine unit - simplified 3D box */}
-                <div className="relative mb-4">
+                <div className="relative mb-2">
                   {/* Top face */}
                   <div className="w-16 h-3 bg-gradient-to-br from-slate-400 to-slate-500 rounded-t-sm transform -skew-y-12 origin-bottom-left"></div>
                   {/* Front face */}
@@ -59,7 +59,10 @@ export function AssemblyLineVisualization() {
                 </div>
 
                 {/* Floating info card */}
-                <div className={`absolute -top-2 left-1/2 -translate-x-1/2 ${statusConfig.bg} ${statusConfig.border} border-2 rounded-lg p-3 min-w-[160px] shadow-xl backdrop-blur-sm`}>
+                <div
+                  className={`absolute left-1/2 -translate-x-1/2 ${statusConfig.bg} ${statusConfig.border} border-2 rounded-lg p-3 min-w-[160px] shadow-xl backdrop-blur-sm`}
+                  style={{ top: '-120px' }}
+                >
                   <div className="flex items-start gap-2 mb-2">
                     <Icon className={`w-4 h-4 ${statusConfig.text} mt-0.5`} />
                     <div className="flex-1">
