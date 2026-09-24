@@ -8,7 +8,7 @@ import { PredictiveInsights } from "./PredictiveInsights";
 import { ScheduledRepairs } from "./ScheduledRepairs";
 import { PredictiveOutcomesCard } from "./PredictiveOutcomesCard";
 
-export function OverviewPage() {
+export function OverviewPage({ onNavigate }: { onNavigate?: (tab: string) => void }) {
   const machineData = [
     {
       id: "MD-0303F-10",
@@ -48,7 +48,7 @@ export function OverviewPage() {
   ];
 
   return (
-    <div className="p-6 w-full max-w-full">
+    <div className="page-content overview-page">
       {/* Dashboard Header */}
       {/* <DashboardHeader /> */}
 
@@ -56,17 +56,18 @@ export function OverviewPage() {
         {/* Left Column - Main Dashboard */}
         <div className="space-y-6">
           {/* Top Section - Statistics */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="overview-metrics">
             <StatusPanel />
             <BarChartPanel />
             <DonutChartPanel />
           </div>
 
           {/* Middle Section - Assembly Line */}
-          <AssemblyLineVisualization />
+          <AssemblyLineVisualization onOpenMachines={() => onNavigate?.('Machines')} />
 
           {/* Bottom Section - Analytics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="section-heading"><div><span>Priority assets</span><h2>Machine risk queue</h2></div><button onClick={() => onNavigate?.('Machines')}>View all machines <b>→</b></button></div>
+          <div className="machine-grid">
             {machineData.map((machine) => (
               <MachineCard key={machine.id} {...machine} />
             ))}

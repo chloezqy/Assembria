@@ -47,7 +47,7 @@ export function MachineCard({ id, health, forecast, probability, status }: Machi
               <div className="text-white/70 text-xs mb-1">AI Confidence</div>
               <div className="text-white flex items-center gap-2">
                 <Target className="w-4 h-4" />
-                <span>{95 - Math.floor(Math.random() * 10)}%</span>
+                <span>{Math.min(98, Math.round(82 + probability * 0.14))}%</span>
               </div>
             </div>
 

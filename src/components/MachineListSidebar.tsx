@@ -1,4 +1,5 @@
-import { Search } from 'lucide-react';
+import { useMemo, useState } from 'react';
+import { Search, X } from 'lucide-react';
 import { ScrollArea } from './ui/scroll-area';
 
 interface Machine {
@@ -18,6 +19,12 @@ export function MachineListSidebar({
   selectedMachineId,
   onSelectMachine,
 }: MachineListSidebarProps) {
+  const [query, setQuery] = useState('');
+  const filteredMachines = useMemo(() => {
+    const normalized = query.trim().toLowerCase();
+    if (!normalized) return machines;
+    return machines.filter((machine) => `${machine.id} ${machine.name} ${machine.status}`.toLowerCase().includes(normalized));
+  }, [machines, query]);
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'normal':
@@ -47,15 +54,19 @@ export function MachineListSidebar({
           <input
             type="text"
             placeholder="Search machines..."
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            aria-label="Search machines"
             className="w-full pl-9 pr-3 py-2 bg-white/60 border border-slate-200 rounded-lg text-sm text-[#1C3D5A] placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#6BD5C4]/50"
           />
+          {query && <button onClick={() => setQuery('')} className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-slate-700" aria-label="Clear search"><X className="w-3.5 h-3.5" /></button>}
         </div>
       </div>
 
       {/* Machine List */}
       <ScrollArea className="flex-1 p-2">
         <div className="space-y-1">
-          {machines.map((machine) => (
+          {filteredMachines.map((machine) => (
             <button
               key={machine.id}
               onClick={() => onSelectMachine(machine.id)}
@@ -75,6 +86,7 @@ export function MachineListSidebar({
               </div>
             </button>
           ))}
+          {filteredMachines.length === 0 && <div className="p-6 text-center text-xs text-slate-500">No machines match “{query}”.</div>}
         </div>
       </ScrollArea>
 
